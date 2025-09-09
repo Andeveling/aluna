@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { DemoMigration } from "@/components/demo-migration"
 
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function Web() {
       <section className="bg-white dark:bg-gray-900">
         <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
-            
+            <DemoMigration />
           </div>
         </div>
       </section>
