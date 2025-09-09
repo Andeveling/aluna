@@ -51,6 +51,48 @@ Transformar el Next.js Enterprise Boilerplate existente en el MVP de Aluna AI - 
 
 ### Goals and Background Context
 
+
+## Seguimiento de Progreso y Hitos
+
+Para asegurar la visibilidad y control del avance del proyecto, se implementarán los siguientes mecanismos de seguimiento y reporting:
+
+- **Herramienta de Gestión**: Se utilizará GitHub Projects e Issues como tablero Kanban para visualizar el estado de cada story, sub-tarea y bug.
+- **Milestones**: Cada story principal del Epic se considerará un hito (milestone) y tendrá fecha objetivo y responsable asignado en GitHub Projects.
+- **Reuniones de Seguimiento**: Se realizarán dailies breves (async o en vivo) y una reunión semanal de revisión de avance y bloqueos.
+- **Reporte de Progreso**: El PM enviará un reporte semanal a stakeholders con:
+  - % de avance por story y global (basado en Issues cerrados vs. abiertos)
+  - Riesgos identificados y acciones
+  - Próximos hitos y entregables
+- **Definición de Done**: Cada story solo se marca como completada si cumple todos sus Acceptance Criteria y pasa revisión de QA/PO.
+- **Dashboard de Métricas**: Se habilitará un dashboard (puede ser Notion, Google Sheets o similar) con:
+  - Estado de stories (To Do, In Progress, Review, Done) sincronizado con GitHub Projects
+  - Fechas reales vs. planificadas
+  - Indicadores clave: bugs abiertos, cobertura de tests, performance, etc.
+
+**Ejemplo de Milestones y Fechas Objetivo:**
+
+| Milestone (Story)                                 | Fecha Objetivo   | Responsable      |
+|--------------------------------------------------|------------------|-----------------|
+| 1.1 DB & Auth Foundation                         | 2025-09-22       | Andres (Tech)   |
+| 1.2 Initial Strength Assessment Engine           | 2025-10-06       | Andres (Tech)   |
+| 1.3 AI-Powered Micro-Assessments System          | 2025-10-20       | Andres (Tech)   |
+| 1.4 AI Report Generation and Export System       | 2025-11-03       | Andres (Tech)   |
+| 1.5 Admin Dashboard and User Management          | 2025-11-17       | Andres (Tech)   |
+
+Estos mecanismos permitirán identificar desvíos a tiempo, facilitar la toma de decisiones y mantener informados a todos los stakeholders.
+
+**Stakeholders y Roles Responsables**:
+
+| Rol                | Nombre/Referencia      | Responsabilidad Principal                                 |
+|--------------------|-----------------------|-----------------------------------------------------------|
+| Product Owner      | John (PM)             | Visión de producto, priorización, validación de entregables|
+| Project Manager    | John (PM)             | Planificación, seguimiento, gestión de riesgos             |
+| Desarrollador Lead | Andres (Tech)         | Implementación técnica, arquitectura, calidad de código    |
+| QA/Testing         | (por asignar)         | Pruebas funcionales, cobertura, validación de releases     |
+| UI/UX Designer     | (por asignar)         | Diseño de experiencia de usuario y validación de prototipos|
+| Stakeholder Piloto | Empresa Piloto LATAM  | Feedback de negocio, validación de funcionalidad           |
+| Asesor Cultural    | Kogui Advisor         | Validación de integración cultural y narrativa             |
+
 **Objetivos**:
 - Construir MVP funcional de la plataforma de assessment de fortalezas Aluna AI
 - Implementar metodología de testing progresivo (test inicial + micro-assessments)
@@ -60,7 +102,6 @@ Transformar el Next.js Enterprise Boilerplate existente en el MVP de Aluna AI - 
 
 **Contexto de Fondo**: 
 Este enhancement transforma tu enterprise boilerplate en el MVP de Aluna AI descrito en tu comprehensive project brief. La plataforma aborda el problema crítico de composición aleatoria de equipos en organizaciones proporcionando descubrimiento científico de fortalezas integrado con elementos respetuosos de la cosmovisión Kogui. El MVP necesita validar el modelo de negocio con empresas piloto mientras mantiene la base técnica de alta calidad de tu boilerplate.
-
 **Change Log**:
 | Change | Date | Version | Description | Author |
 |--------|------|---------|-------------|---------|
