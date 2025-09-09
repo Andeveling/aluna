@@ -59,7 +59,7 @@ Aluna AI es una plataforma de IA que implementa un **test progresivo de fortalez
 
 ### Key Differentiators
 
-1. **Diferenciación cultural:** Primera plataforma que combina fortalezas con cosmovisión indígena latinoamericana validada por asesores culturales
+1. **Diferenciación cultural:** Primera plataforma que combina fortalezas con cosmovisión indígena latinoamericana
 2. **IA personalizada evolutiva:** No solo un test estático, sino un perfil que se refina progresivamente
 3. **Metodología de hábitos atómicos:** Test inicial corto + micro-assessments para maximizar adherencia
 4. **Enfoque dual:** Desarrollo personal + optimización organizacional
@@ -169,9 +169,10 @@ Convertirse en la herramienta estándar para composición consciente de equipos 
 - **Test inicial de fortalezas (40 ítems):** Cuestionario científicamente validado que identifica Top 3 fortalezas en ≤15 minutos, adaptado con narrativa cultural Kogui respetuosa
 - **Pantalla de resultados personalizados:** Dashboard que muestra Top 3 fortalezas con descripciones, puntuaciones de confianza y recomendaciones iniciales basadas en perfil
 - **Perfil de usuario básico:** Página personal que mantiene historial de resultados, progreso de micro-assessments y evolución de confianza en cada fortaleza
-- **Sistema de micro-assessments semanales:** Mecanismo que presenta 2-3 preguntas contextuales semanales para refinar progresivamente el perfil de fortalezas
-- **Exportación de reportes (PDF/CSV):** Funcionalidad para admins empresariales que genera reportes individuales y agregados de equipos con métricas y recomendaciones
-- **Panel administrativo básico:** Interface para gestión de pilotos, invitación de usuarios, monitoreo de progreso y exportación de datos agregados
+- **Sistema de micro-assessments semanales:** Mecanismo que presenta 3-6 preguntas contextuales semanales para refinar progresivamente el perfil de fortalezas
+- **Generación de reportes con AI asistidos por agentes:** Herramienta que utiliza IA para generar reportes personalizados y recomendaciones basadas en datos de usuario
+- **Exportación de reportes (PDF/CSV/Markdown):** Funcionalidad para admins empresariales que genera reportes individuales y agregados de equipos con métricas y recomendaciones
+- **Panel administrativo básico:** Interface para gestión de pilotos, invitación de usuarios, monitoreo de progreso y exportación de datos agregados, mejores matches.
 
 ### Out of Scope for MVP
 
@@ -226,22 +227,20 @@ Aluna AI se posiciona como la plataforma líder en LATAM para desarrollo organiz
 
 ### Platform Requirements
 
-- **Target Platforms:** Web application (responsive design), API-first architecture para futuras integraciones móviles
+- **Target Platforms:** Web application PWA (responsive design), API-first architecture para futuras integraciones móviles
 - **Browser/OS Support:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ en Windows, macOS, Linux
 - **Performance Requirements:** Tiempo de carga ≤3s, soporte para 1000+ usuarios concurrentes, 99.9% uptime
 
 ### Technology Preferences
 
-- **Frontend:** Next.js 14+ con TypeScript, TailwindCSS para UI, Shadcn/ui para componentes
-- **Backend:** Node.js con TypeScript, framework Express o Fastify, architecture serverless preferida
-- **Database:** PostgreSQL para datos estructurados, Redis para cache y sesiones
-- **Hosting/Infrastructure:** Vercel para frontend, AWS o Google Cloud para backend, CDN global para assets
+- **Fullstack:** Next.js 15+ con TypeScript, TailwindCSS 4+ para UI, Shadcn/ui para componentes
+- **Database:** PostgreSQL para datos estructurados
+- **Hosting/Infrastructure:** Vercel / Vercel pg db
 
 ### Architecture Considerations
 
-- **Repository Structure:** Monorepo con pnpm workspaces para frontend, backend y shared libraries
-- **Service Architecture:** Microservicios con API Gateway, separación entre servicio de assessments, perfiles y reportes
-- **Integration Requirements:** RESTful APIs, webhooks para eventos en tiempo real, preparación para GraphQL futuro
+- **Repository Structure:** NextJs Fullstack con pnpm workspaces y server actions.
+- **Service Architecture:** Monolito modular con separación clara de capas (UI, lógica de negocio, datos)
 - **Security/Compliance:** Autenticación JWT, encriptación AES-256, cumplimiento GDPR/LGPD, auditoría de acceso
 
 ---
@@ -304,5 +303,4 @@ Aluna AI se posiciona como la plataforma líder en LATAM para desarrollo organiz
 3. **Diseñar instrumentos de test:** Desarrollar lista borrador de 40 ítems del test inicial y metodología de micro-assessments
 4. **Preparar framework legal:** Crear plantillas de consentimiento informado y política de privacidad para pilotos
 5. **Definir arquitectura técnica:** Especificar stack tecnológico, esquema de base de datos y plan de infraestructura
-
-¡El brief ha sido adaptado al template estructurado! ¿Te parece bien esta estructura mejorada? ¿Hay alguna sección que quieras que ajuste o profundice antes de continuar con la generación del PRD?
+6. **Piloto:** Contactar 5 empresas con grupos de usuarios para validar la propuesta de valor y recopilar feedback
