@@ -1,8 +1,5 @@
 {
   "github.copilot.chat.commitMessageGeneration.instructions": [
-    {
-      "text": "Use conventional commit message format with a body."
-    },
     { "file": ".github/commit-instructions.md" }
   ],
   "tailwindCSS.experimental.classRegex": [
