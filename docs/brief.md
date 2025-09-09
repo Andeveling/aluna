@@ -227,19 +227,37 @@ Aluna AI se posiciona como la plataforma líder en LATAM para desarrollo organiz
 
 ### Platform Requirements
 
-- **Target Platforms:** Web application PWA (responsive design), API-first architecture para futuras integraciones móviles
-- **Browser/OS Support:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ en Windows, macOS, Linux
-- **Performance Requirements:** Tiempo de carga ≤3s, soporte para 1000+ usuarios concurrentes, 99.9% uptime
 
-### Technology Preferences
-
-- **Fullstack:** Next.js 15+ con TypeScript, TailwindCSS 4+ para UI, Shadcn/ui para componentes
 - **Database:** PostgreSQL para datos estructurados
-- **Hosting/Infrastructure:** Vercel / Vercel pg db
 
-### Architecture Considerations
+### Stack Tecnológico Real y Arquitectura
 
-- **Repository Structure:** NextJs Fullstack con pnpm workspaces y server actions.
+- **Fullstack monolítico:** Next.js 15 (App Router) con TypeScript, arquitectura monolítica modular (no microservicios), server actions y API routes para lógica de negocio y endpoints.
+- **ORM:** Drizzle ORM para modelado de datos, migraciones y acceso seguro a PostgreSQL.
+- **Base de datos:** PostgreSQL (Vercel Postgres o gestionado en cloud), conexión optimizada para escalabilidad y bajo costo.
+- **IA Generativa:** Integración directa con Vercel AI SDK y OpenAI provider para generación de reportes, insights y recomendaciones personalizadas.
+- **UI:** TailwindCSS 4+ y Shadcn/ui para componentes accesibles y rápidos.
+- **Infraestructura:** Despliegue en Vercel, aprovechando serverless y edge functions para baja latencia.
+- **Autenticación:** NextAuth.js o JWT simple, según preferencia, con protección de endpoints y datos sensibles.
+- **API-first:** Todas las funcionalidades expuestas como server actions o API routes, facilitando futuras integraciones móviles.
+- **Testing:** Vitest para unitarios, Playwright para E2E, cobertura mínima 80% en MVP.
+
+#### Ventajas del Stack Elegido
+- Permite iterar rápido y escalar sin complejidad de microservicios.
+- Integración nativa con IA generativa y reporting asistido.
+- Bajo costo operativo y fácil mantenimiento para equipos pequeños.
+- Seguridad y cumplimiento normativo desde el diseño.
+
+#### Alcance MVP (ajustado)
+- **Test inicial de fortalezas:** Implementado como server action, persistiendo respuestas en PostgreSQL vía Drizzle.
+- **Micro-assessments semanales:** Generados y evaluados usando IA (OpenAI provider vía Vercel AI SDK), con lógica de refinamiento progresivo.
+- **Reportes personalizados:** Generados por IA y exportables (PDF/CSV/Markdown) desde el panel admin.
+- **Panel administrativo:** Gestión de usuarios, pilotos y exportación de datos, todo sobre la misma app Next.js.
+- **Seguridad:** Autenticación y autorización básica, cifrado de datos sensibles.
+
+El MVP se entrega como un monolito Next.js 15, con todas las dependencias y scripts de migración/documentación incluidos para facilitar despliegue y pruebas.
+
+- **Repository Structure:** NextJs Fullstack con pnpm y server actions.
 - **Service Architecture:** Monolito modular con separación clara de capas (UI, lógica de negocio, datos)
 - **Security/Compliance:** Autenticación JWT, encriptación AES-256, cumplimiento GDPR/LGPD, auditoría de acceso
 
@@ -251,7 +269,7 @@ Aluna AI se posiciona como la plataforma líder en LATAM para desarrollo organiz
 
 - **Budget:** Presupuesto bootstrap limitado para desarrollo inicial y piloto
 - **Timeline:** MVP en 6-8 semanas, piloto operativo en 3 meses
-- **Resources:** Equipo inicial de 1-2 desarrolladores + 1 PM/Designer
+- **Resources:** Equipo inicial de 1 desarrollador
 - **Technical:** Dependencia de servicios cloud para escalabilidad, limitaciones de integración con sistemas legacy
 
 ### Key Assumptions
@@ -304,3 +322,20 @@ Aluna AI se posiciona como la plataforma líder en LATAM para desarrollo organiz
 4. **Preparar framework legal:** Crear plantillas de consentimiento informado y política de privacidad para pilotos
 5. **Definir arquitectura técnica:** Especificar stack tecnológico, esquema de base de datos y plan de infraestructura
 6. **Piloto:** Contactar 5 empresas con grupos de usuarios para validar la propuesta de valor y recopilar feedback
+
+---
+
+## Lecciones y prioridades de desarrollo (Elicitation)
+
+Tras una sesión avanzada de elicitation, se identifican los siguientes aprendizajes y prioridades para el desarrollo del MVP de Aluna AI:
+
+- **Riesgo principal:** Sobrecarga técnica y de alcance. Es fundamental evitar que el MVP se complique con funcionalidades o integraciones no esenciales, priorizando simplicidad y calidad.
+- **Criterio de éxito del piloto:** Usuarios pueden completar el test, visualizar resultados y los administradores exportan reportes sin errores críticos.
+- **Funcionalidades imprescindibles:** Test inicial funcional, pantalla de resultados, micro-assessments básicos, exportación de reportes y panel admin mínimo.
+- **Feedback prioritario:** Usabilidad (fluidez del test, claridad de resultados) y detección temprana de bugs o bloqueos técnicos.
+- **Cuidado cultural:** Validar la integración Kogui con asesores culturales, asegurando una narrativa respetuosa y profunda.
+- **Métricas clave:** Completitud del test, retención de usuarios y uso de reportes exportados.
+- **Recursos game-changer:** Apoyo en UI/UX, QA para testing y acceso temprano a usuarios reales para pruebas.
+- **Supuestos a validar:** Nivel de engagement real con micro-assessments y capacidad de la infraestructura para escalar.
+- **Iteración recomendada:** Ciclos cortos, dashboards de errores y métricas, reuniones semanales para priorizar fixes.
+- **Benchmarks relevantes:** Gallup, 16Personalities y plataformas que combinen assessments con reporting automatizado.
