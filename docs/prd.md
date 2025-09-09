@@ -149,7 +149,7 @@ lib/
   db/                # Esquemas Drizzle
 ```
 
-**Convenciones de Nomenclatura**: Mantener camelCase para variables, kebab-case para componentes, snake_case para campos de base de datos siguiendo estándares existentes.
+**Convenciones de Nomenclatura**: Mantener camelCase para variables, kebab-case para componentes, snake_case, para campos de base de datos y  UPPER_SNAKE_CASE para constantes siguiendo estándares existentes.
 
 **Estándares de Código**: Preservar configuraciones existentes de ESLint/Prettier, TypeScript strict mode, y convenciones de server actions/API routes.
 
