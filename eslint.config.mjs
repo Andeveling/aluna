@@ -1,11 +1,10 @@
-import * as fs from "fs"
-
 // https://github.com/francoismassart/eslint-plugin-tailwindcss/pull/381
 // import eslintPluginTailwindcss from "eslint-plugin-tailwindcss"
-import eslintPluginImport from "eslint-plugin-import"
 import eslintPluginNext from "@next/eslint-plugin-next"
+import eslintPluginImport from "eslint-plugin-import"
 import eslintPluginStorybook from "eslint-plugin-storybook"
 import typescriptEslint from "typescript-eslint"
+import * as fs from "fs"
 
 const eslintIgnore = [
   ".git/",
@@ -19,14 +18,14 @@ const eslintIgnore = [
   "*.d.ts",
 ]
 
-const config = typescriptEslint.config(
+const config = [
   {
     ignores: eslintIgnore,
   },
   ...eslintPluginStorybook.configs["flat/recommended"],
   //  https://github.com/francoismassart/eslint-plugin-tailwindcss/pull/381
   // ...eslintPluginTailwindcss.configs["flat/recommended"],
-  typescriptEslint.configs.recommended,
+  ...typescriptEslint.configs.recommended,
   eslintPluginImport.flatConfigs.recommended,
   {
     plugins: {
@@ -94,8 +93,8 @@ const config = typescriptEslint.config(
         },
       ],
     },
-  }
-)
+  },
+]
 
 function getDirectoriesToSort() {
   const ignoredSortingDirectories = [".git", ".next", ".vscode", "node_modules"]
