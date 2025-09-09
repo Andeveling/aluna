@@ -134,20 +134,202 @@ Este enhancement transforma tu enterprise boilerplate en el MVP de Aluna AI desc
 
 ### Code Organization and Standards
 
-**Enfoque de Estructura de Archivos**: 
+**Enfoque de Estructura de Archivos por Dominios**: 
 ```
-app/
-  assessment/          # Rutas de assessment
-  admin/              # Panel administrativo
-  api/               # API routes existentes + nuevas
-components/
-  assessment/         # Componentes de assessment
-  admin/             # Componentes de admin
-lib/
-  assessment/         # Lógica de negocio
-  ai/                # Integración IA
-  db/                # Esquemas Drizzle
+├── app/                              # Next.js App Router
+│   ├── (auth)/                       # Auth group route
+│   │   ├── login/                    
+│   │   └── register/                 
+│   ├── (dashboard)/                  # Protected dashboard routes
+│   │   ├── assessment/               # Assessment domain routes
+│   │   │   ├── initial/             # Initial 40-item assessment
+│   │   │   ├── micro/               # Weekly micro-assessments
+│   │   │   └── results/             # Results visualization
+│   │   ├── profile/                 # User profile management
+│   │   └── reports/                 # Individual reports
+│   ├── (admin)/                     # Admin panel routes
+│   │   ├── dashboard/               # Admin overview
+│   │   ├── organizations/           # Org management
+│   │   ├── users/                   # User management
+│   │   ├── reports/                 # Team reports & analytics
+│   │   └── settings/                # Admin settings
+│   ├── api/                         # API routes
+│   │   ├── auth/                    # Authentication endpoints
+│   │   ├── assessment/              # Assessment operations
+│   │   ├── micro-assessment/        # Micro-assessment logic
+│   │   ├── reports/                 # Report generation
+│   │   ├── ai/                      # AI integration endpoints
+│   │   └── health/                  # Existing health check
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/                       # Shared UI components
+│   ├── ui/                          # Base Shadcn/UI components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   └── ...
+│   ├── assessment/                  # Assessment domain components
+│   │   ├── question-card/
+│   │   ├── progress-indicator/
+│   │   ├── strength-display/
+│   │   └── results-chart/
+│   ├── admin/                       # Admin domain components
+│   │   ├── user-table/
+│   │   ├── analytics-chart/
+│   │   ├── invite-modal/
+│   │   └── export-button/
+│   └── common/                      # Cross-domain components
+│       ├── header/
+│       ├── sidebar/
+│       └── loading-spinner/
+├── lib/                             # Business logic & utilities
+│   ├── domains/                     # Domain-specific logic
+│   │   ├── assessment/              # Assessment domain
+│   │   │   ├── types.ts             # Assessment types & interfaces
+│   │   │   ├── services.ts          # Assessment business logic
+│   │   │   ├── scoring.ts           # Scoring algorithms
+│   │   │   └── validations.ts       # Assessment validations
+│   │   ├── micro-assessment/        # Micro-assessment domain
+│   │   │   ├── types.ts
+│   │   │   ├── generator.ts         # AI-powered question generation
+│   │   │   ├── scheduler.ts         # Weekly scheduling logic
+│   │   │   └── refinement.ts        # Profile refinement algorithms
+│   │   ├── reports/                 # Reporting domain
+│   │   │   ├── types.ts
+│   │   │   ├── generator.ts         # AI report generation
+│   │   │   ├── exporters.ts         # PDF/CSV/MD export logic
+│   │   │   └── templates.ts         # Report templates
+│   │   ├── organizations/           # Organization domain
+│   │   │   ├── types.ts
+│   │   │   ├── services.ts          # Org management logic
+│   │   │   └── permissions.ts       # Role-based permissions
+│   │   ├── users/                   # User domain
+│   │   │   ├── types.ts
+│   │   │   ├── services.ts          # User management
+│   │   │   └── profile.ts           # Profile management
+│   │   └── cultural/                # Kogui cultural integration
+│   │       ├── types.ts
+│   │       ├── narratives.ts        # Cultural narratives
+│   │       └── validation.ts        # Cultural validation helpers
+│   ├── shared/                      # Cross-domain utilities
+│   │   ├── ai/                      # AI integration layer
+│   │   │   ├── client.ts            # Vercel AI SDK setup
+│   │   │   ├── prompts.ts           # AI prompts & templates
+│   │   │   └── providers.ts         # OpenAI provider config
+│   │   ├── auth/                    # Authentication utilities
+│   │   │   ├── config.ts            # NextAuth config
+│   │   │   ├── middleware.ts        # Auth middleware
+│   │   │   └── permissions.ts       # Permission helpers
+│   │   ├── email/                   # Email notifications
+│   │   │   ├── client.ts
+│   │   │   └── templates.ts
+│   │   └── utils/                   # General utilities
+│   │       ├── cn.ts                # Tailwind class merger
+│   │       ├── date.ts              # Date utilities
+│   │       └── validation.ts        # Zod schemas
+├── lib/db/                          # Database layer
+│   ├── schema/                      # Drizzle schemas by domain
+│   │   ├── users.ts                 # User & auth tables
+│   │   ├── organizations.ts         # Organization tables
+│   │   ├── assessments.ts           # Assessment data tables
+│   │   ├── micro-assessments.ts     # Micro-assessment tables
+│   │   ├── reports.ts               # Reports & exports tables
+│   │   └── index.ts                 # Schema exports
+│   ├── migrations/                  # Database migrations
+│   ├── seeds/                       # Development seed data
+│   ├── connection.ts                # DB connection setup
+│   └── queries/                     # Complex queries by domain
+│       ├── assessment.ts
+│       ├── analytics.ts
+│       └── reports.ts
+├── hooks/                           # Custom React hooks
+│   ├── use-assessment.ts             # Assessment state management
+│   ├── use-micro-assessment.ts       # Micro-assessment hooks
+│   ├── use-reports.ts                # Reports data hooks
+│   └── use-auth.ts                   # Authentication hooks
+├── types/                           # Global TypeScript types
+│   ├── api.ts                       # API response types
+│   ├── auth.ts                      # Authentication types
+│   └── global.ts                    # Global type definitions
+├── config/                          # Configuration files
+│   ├── constants.ts                 # App constants
+│   ├── features.ts                  # Feature flags
+│   └── env.ts                       # Environment validation (T3 Env)
+└── docs/                           # Project documentation
+    ├── api/                        # API documentation
+    ├── deployment/                 # Deployment guides
+    ├── cultural/                   # Cultural integration docs
+    └── architecture/               # Technical architecture
 ```
+
+**Principios de Organización por Dominios:**
+
+1. **Separación Clara por Dominios**: Cada dominio de negocio tiene su propia carpeta con tipos, servicios y validaciones
+2. **Colocation de Funcionalidades**: Componentes, lógica y tipos relacionados están cerca entre sí
+3. **Escalabilidad**: Estructura preparada para crecimiento sin refactoring mayor
+4. **Mantenibilidad**: Fácil localización de código por contexto de negocio
+5. **Reutilización**: Componentes y utilidades compartidas claramente identificadas
+
+**Ejemplos de Implementación por Dominio:**
+
+```typescript
+// lib/domains/assessment/types.ts
+export interface Assessment {
+  id: string;
+  userId: string;
+  questions: AssessmentQuestion[];
+  responses: AssessmentResponse[];
+  results: StrengthResult[];
+  status: 'draft' | 'completed' | 'expired';
+  startedAt: Date;
+  completedAt?: Date;
+}
+
+export interface StrengthResult {
+  strengthId: string;
+  name: string;
+  score: number;
+  confidence: number;
+  kogui_narrative?: string;
+  rank: 1 | 2 | 3; // Top 3 strengths
+}
+```
+
+```typescript
+// lib/domains/assessment/services.ts
+export class AssessmentService {
+  static async calculateStrengths(responses: AssessmentResponse[]): Promise<StrengthResult[]> {
+    // Scoring algorithm implementation
+  }
+  
+  static async saveProgress(assessmentId: string, responses: AssessmentResponse[]): Promise<void> {
+    // Real-time progress saving
+  }
+}
+```
+
+```typescript
+// components/assessment/QuestionCard/QuestionCard.tsx
+interface QuestionCardProps {
+  question: AssessmentQuestion;
+  currentIndex: number;
+  totalQuestions: number;
+  onAnswer: (response: AssessmentResponse) => void;
+}
+
+export function QuestionCard({ question, currentIndex, totalQuestions, onAnswer }: QuestionCardProps) {
+  // Assessment question component with Kogui cultural elements
+}
+```
+
+**Ventajas de esta Estructura:**
+
+- **Domain Boundaries**: Cada dominio es independiente y mantenible
+- **Feature Folders**: Relacionados por funcionalidad, no por tipo de archivo
+- **Separation of Concerns**: Business logic separado de UI y data access
+- **Testability**: Cada dominio puede ser tested de forma aislada
+- **Scalability**: Agregar nuevos dominios (ej: coaching, analytics avanzado) es simple
 
 **Convenciones de Nomenclatura**: Mantener camelCase para variables, kebab-case para componentes, snake_case, para campos de base de datos y  UPPER_SNAKE_CASE para constantes siguiendo estándares existentes.
 
@@ -279,7 +461,7 @@ Para que pueda descubrir mis Top 3 fortalezas con narrativa cultural Kogui respe
 ### Story 1.3: AI-Powered Micro-Assessments System
 
 Como usuario que ha completado el assessment inicial,
-Quiero recibir micro-assessments semanales de 3-6 preguntas contextualles,
+Quiero recibir micro-assessments semanales de 3-6 preguntas contextuales,
 Para que mi perfil de fortalezas se refine progresivamente y sea más preciso over time.
 
 #### Acceptance Criteria
